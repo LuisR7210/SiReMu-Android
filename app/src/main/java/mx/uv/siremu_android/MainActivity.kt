@@ -3,6 +3,7 @@ package mx.uv.siremu_android
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
@@ -13,8 +14,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        val miLista = findViewById<ListView>(R.id.lista_principal)
+        setContentView(R.layout.consultar_mis_lr)
+        val miLista = findViewById<ListView>(R.id.lista_lr)
         miLista.adapter = miAdaptador(this)
 
     }
@@ -23,15 +24,25 @@ class MainActivity : AppCompatActivity() {
 
         private val miContexto: Context
 
+        private val lista = arrayListOf<String>(
+            "Biblioteca local","Canciones que me gustan","Musica descargada","Mis canciones","Mejores Aerosmith","Linkin Parkkkk","Mi rock " +
+                    "en español", "Musica para dormir"
+        )
+
         init {
             miContexto = contexto
         }
 
         //genera cada una de las filas
         override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-            val texto = TextView(miContexto)
-            texto.text = "Hola"
-            return texto
+            val layoutInflater = LayoutInflater.from(miContexto)
+            val townmain = layoutInflater.inflate(R.layout.lista_reproduccion_cmldr,parent, false)
+            val fila = townmain.findViewById<TextView>(R.id.nombre)
+            fila.text=lista.get(position)
+            /*val texto = TextView(miContexto)
+            texto.text = "Soy Luis Angel"
+            return texto*/
+            return townmain
         }
 
         override fun getItem(position: Int): Any {
@@ -45,7 +56,7 @@ class MainActivity : AppCompatActivity() {
 
         // cuántas filas genera
         override fun getCount(): Int {
-            return 10
+            return lista.size
         }
 
     }
