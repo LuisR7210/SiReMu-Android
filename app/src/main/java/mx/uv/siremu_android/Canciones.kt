@@ -1,7 +1,6 @@
 package mx.uv.siremu_android
 
 import android.content.Context
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,21 +10,13 @@ import android.widget.BaseAdapter
 import android.widget.ListView
 import android.widget.TextView
 
-class MainActivity : AppCompatActivity() {
+class Canciones : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        val listasReproduccion = findViewById<ListView>(R.id.listas_reproduccion)
-        listasReproduccion.adapter = miAdaptador(this)
-        listasReproduccion.setOnItemClickListener { parent, view, position, id ->
-            val intent = Intent(this, Canciones::class.java)
-            startActivity(intent)
-        }
-
-    }
-
-    fun cancionesClick(v: View) {
+        setContentView(R.layout.activity_canciones)
+        val miLista = findViewById<ListView>(R.id.lista_principal2)
+        miLista.adapter = miAdaptador(this)
 
     }
 
@@ -33,26 +24,25 @@ class MainActivity : AppCompatActivity() {
 
         private val miContexto: Context
 
-        private val listaComidas = arrayListOf<String>(
-            "Albóndiga", "Arroz", "Pasta"
+        private val listaCanciones = arrayListOf<String>(
+            "Giant", "Radioactive", "Know Your Worth"
         )
 
-        private val listaCalorias = arrayListOf<String>(
-            "202", "404", "808"
+        private val listaAutores = arrayListOf<String>(
+            "Calvin Harris", "Imagine Dragons", "Khalid"
         )
 
         init {
             miContexto = contexto
         }
 
-        //genera cada una de las filas
         override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
             val layoutInflater = LayoutInflater.from(miContexto)
-            val rowMain = layoutInflater.inflate(R.layout.fila_lista_main, parent, false)
-            val nombreComida = rowMain.findViewById<TextView>(R.id.nombre_comidas)
-            nombreComida.text = listaComidas[position]
-            val nombreCalorias = rowMain.findViewById<TextView>(R.id.nombre_calorias)
-            nombreCalorias.text = "Calorías: " + listaCalorias[position]
+            val rowMain = layoutInflater.inflate(R.layout.fila_lista_canciones, parent, false)
+            val nombreCancion = rowMain.findViewById<TextView>(R.id.nombre_cancion)
+            nombreCancion.text = listaCanciones[position]
+            val nombreArtista = rowMain.findViewById<TextView>(R.id.nombre_artista)
+            nombreArtista.text = listaAutores[position]
             return rowMain
         }
 
