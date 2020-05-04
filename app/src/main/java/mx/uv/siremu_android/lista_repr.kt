@@ -1,7 +1,6 @@
 package mx.uv.siremu_android
 
 import android.content.Context
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,41 +9,31 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ListView
 import android.widget.TextView
+import kotlinx.android.synthetic.main.lista_reproduccion_cmldr.*
 
-class MainActivity : AppCompatActivity() {
-    private var lista = arrayListOf<String>(
-        "Biblioteca local","Canciones que me gustan","Musica descargada","Mis canciones","Mejores Aerosmith","Linkin Parkkkk","Mi rock " +
-                "en español", "Musica para dormir"
-    )
+class lista_repr : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.consultar_mis_lr)
-        val miLista = findViewById<ListView>(R.id.lista_lr)
-        crearLista()
-        miLista.adapter = miAdaptador(this)
-        miLista.setOnItemClickListener{parent,view,position,id->
-            val intent = Intent(this,lista_repr::class.java).apply {
-                putExtra("nombre",lista[position].toString())
-            }
-            this.startActivity(intent)
-        }
-    }
+        setContentView(R.layout.activity_lista_repr)
 
-    fun crearLista(){
-        lista = arrayListOf<String>(
-            "Biblioteca local","Canciones que me gustan","Musica descargada","Mis canciones","Mejores Aerosmith","Linkin Parkkkk","Mi rock " +
-                    "en español", "Musica para dormir"
-        )
+        val miLista = findViewById<ListView>(R.id.lista_lr)
+        miLista.adapter = miAdaptador(this)
+
+        val message = intent.getStringExtra("nombre")
+
+        //val textView = findViewById<TextView>(R.id.nombre)
+        //textView.text=message
     }
 
     private class miAdaptador(contexto: Context) : BaseAdapter() {
 
         private val miContexto: Context
 
+
         private val lista = arrayListOf<String>(
-            "Biblioteca local","Canciones que me gustan","Musica descargada","Mis canciones","Mejores Aerosmith","Linkin Parkkkk","Mi rock " +
-                    "en español", "Musica para dormir"
+            "Dream on","Crazy","Love in an elevator","Sweet emotion","Dude","Livin' on the edge","Eat the rich"
+            , "Last child"
         )
 
         init {
@@ -78,4 +67,5 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+
 }

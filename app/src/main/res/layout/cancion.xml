@@ -6,16 +6,25 @@
     android:layout_height="match_parent"
     android:background="@android:color/black">
 
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="47dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="100dp"
+        app:layout_constraintStart_toEndOf="@+id/nombreCancion"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_media_play" />
+
     <TextView
-        android:id="@+id/nombre"
+        android:id="@+id/nombreCancion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nombre de lista"
+        android:text="Nombre de la cancion"
         android:textColor="@android:color/white"
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="6dp" />
-
+        tools:layout_editor_absoluteX="6dp"
+        tools:layout_editor_absoluteY="5dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
