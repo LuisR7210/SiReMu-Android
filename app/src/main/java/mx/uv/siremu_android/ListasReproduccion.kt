@@ -11,31 +11,25 @@ import android.widget.BaseAdapter
 import android.widget.ListView
 import android.widget.TextView
 
-class MainActivity : AppCompatActivity() {
-
+class ListasReproduccion : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        val listasReproduccion = findViewById<ListView>(R.id.listas_reproduccion)
-        listasReproduccion.adapter = miAdaptador(this)
+        setContentView(R.layout.consultar_mis_lr)
+        val miLista = findViewById<ListView>(R.id.lista_lr)
+        miLista.adapter = miAdaptador(this)
 
-
+        miLista.setOnItemClickListener { parent, view, position, id ->
+            val intent = Intent(this, Canciones::class.java)
+            startActivity(intent)
+        }
     }
-
-    fun cancionesClick(v: View) {
-
-    }
-
     private class miAdaptador(contexto: Context) : BaseAdapter() {
 
         private val miContexto: Context
 
-        private val listaComidas = arrayListOf<String>(
-            "Albóndiga", "Arroz", "Pasta"
-        )
-
-        private val listaCalorias = arrayListOf<String>(
-            "202", "404", "808"
+        private val lista = arrayListOf<String>(
+            "Biblioteca local","Canciones que me gustan","Musica descargada","Mis canciones","Mejores Aerosmith","Linkin Parkkkk","Mi rock " +
+                    "en español", "Musica para dormir"
         )
 
         init {
@@ -44,19 +38,22 @@ class MainActivity : AppCompatActivity() {
 
         //genera cada una de las filas
         override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
+            /*val texto = TextView(miContexto)
+            texto.text = "Hola"
+            return texto*/
             val layoutInflater = LayoutInflater.from(miContexto)
-            val rowMain = layoutInflater.inflate(R.layout.fila_lista_main, parent, false)
-            val nombreComida = rowMain.findViewById<TextView>(R.id.nombre_comidas)
-            nombreComida.text = listaComidas[position]
-            val nombreCalorias = rowMain.findViewById<TextView>(R.id.nombre_calorias)
-            nombreCalorias.text = "Calorías: " + listaCalorias[position]
-            return rowMain
+            val townmain = layoutInflater.inflate(R.layout.lista_reproduccion_cmldr,parent, false)
+            val fila = townmain.findViewById<TextView>(R.id.nombre)
+            fila.text=lista[position]
+            /*val texto = TextView(miContexto)
+            texto.text = "Soy Luis Angel"
+            return texto*/
+            return townmain
         }
 
         override fun getItem(position: Int): Any {
             TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
         }
-
         //regresa el id de cada elemento de la lista
         override fun getItemId(position: Int): Long {
             return position.toLong()
@@ -64,7 +61,8 @@ class MainActivity : AppCompatActivity() {
 
         // cuántas filas genera
         override fun getCount(): Int {
-            return 3
+//            return 10
+            return lista.size
         }
 
     }
