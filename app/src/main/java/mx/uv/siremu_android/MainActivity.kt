@@ -2,7 +2,6 @@ package mx.uv.siremu_android
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +9,8 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ListView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,6 +20,12 @@ class MainActivity : AppCompatActivity() {
         val listasReproduccion = findViewById<ListView>(R.id.listas_reproduccion)
         listasReproduccion.adapter = miAdaptador(this)
 
+        listasReproduccion.setOnItemClickListener { parent, view, position, id ->
+            val intent = Intent(this, Canciones::class.java)
+            val textView = view.findViewById(R.id.nombre_comidas) as TextView
+            intent.putExtra("Nombre_Album", textView.text.toString())
+            startActivity(intent)
+        }
 
     }
 
@@ -31,11 +38,8 @@ class MainActivity : AppCompatActivity() {
         private val miContexto: Context
 
         private val listaComidas = arrayListOf<String>(
-            "Albóndiga", "Arroz", "Pasta"
-        )
-
-        private val listaCalorias = arrayListOf<String>(
-            "202", "404", "808"
+            "Biblioteca local","Canciones que me gustan","Musica descargada","Mis canciones","Mejores Aerosmith","Linkin Parkkkk","Mi rock " +
+                    "en español", "Musica para dormir"
         )
 
         init {
@@ -48,8 +52,6 @@ class MainActivity : AppCompatActivity() {
             val rowMain = layoutInflater.inflate(R.layout.fila_lista_main, parent, false)
             val nombreComida = rowMain.findViewById<TextView>(R.id.nombre_comidas)
             nombreComida.text = listaComidas[position]
-            val nombreCalorias = rowMain.findViewById<TextView>(R.id.nombre_calorias)
-            nombreCalorias.text = "Calorías: " + listaCalorias[position]
             return rowMain
         }
 
@@ -64,7 +66,7 @@ class MainActivity : AppCompatActivity() {
 
         // cuántas filas genera
         override fun getCount(): Int {
-            return 3
+            return listaComidas.size
         }
 
     }

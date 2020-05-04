@@ -1,7 +1,6 @@
 package mx.uv.siremu_android
 
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ListView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 
 class Canciones : AppCompatActivity() {
 
@@ -17,7 +17,7 @@ class Canciones : AppCompatActivity() {
         setContentView(R.layout.activity_canciones)
         val miLista = findViewById<ListView>(R.id.lista_principal2)
         miLista.adapter = miAdaptador(this)
-
+        this.title = intent.getStringExtra("Nombre_Album")
     }
 
     private class miAdaptador(contexto: Context) : BaseAdapter() {
