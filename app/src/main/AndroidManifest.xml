@@ -3,6 +3,7 @@
     package="mx.uv.siremu_android">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -11,24 +12,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".InfoCuentaGoogle"
-            android:label="Perfil">
+        <activity android:name=".Cancion"><intent-filter>
+            <action android:name="android.intent.action.MAIN" />
 
-        </activity>
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter></activity>
+        <activity
+            android:name=".InfoCuentaGoogle"
+            android:label="Perfil" />
         <activity
             android:name=".Login"
-            android:label="Iniciar Sesión">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:label="Iniciar Sesión"></activity>
         <activity android:name=".Canciones" />
         <activity android:name=".ListasReproduccion" />
         <activity
             android:name=".MainActivity"
-            android:label="Listas de reproducción"></activity>
+            android:label="Listas de reproducción">
+
+        </activity>
+        <activity android:name=".lista_repr" />
     </application>
 
 </manifest>

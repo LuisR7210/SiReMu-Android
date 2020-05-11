@@ -15,7 +15,7 @@ class lista_repr : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_lista_repr)
+        setContentView(R.layout.consultar_mis_lr)
 
         val miLista = findViewById<ListView>(R.id.lista_lr)
         miLista.adapter = miAdaptador(this)
