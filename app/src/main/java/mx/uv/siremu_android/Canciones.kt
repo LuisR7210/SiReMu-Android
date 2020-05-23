@@ -41,7 +41,7 @@ class Canciones : AppCompatActivity() {
             val rowMain = layoutInflater.inflate(R.layout.fila_lista_canciones, parent, false)
             val nombreCancion = rowMain.findViewById<TextView>(R.id.nombre_cancion)
             nombreCancion.text = listaCanciones[position]
-            val nombreArtista = rowMain.findViewById<TextView>(R.id.nombre_artista)
+            val nombreArtista = rowMain.findViewById<TextView>(R.id.tvArtista)
             nombreArtista.text = listaAutores[position]
             return rowMain
         }

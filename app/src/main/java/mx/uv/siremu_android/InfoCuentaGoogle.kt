@@ -32,10 +32,12 @@ class InfoCuentaGoogle : AppCompatActivity() {
             val personGivenName = acct.givenName
             val personFamilyName = acct.familyName
             correo.text  = acct.email
-            idCuenta.text = acct.id
+            val idCuenta = acct.id
             GlideApp.with(this).load(acct.photoUrl).into(fotoPerfil);
         }
-
+        btMisAlbumes.setOnClickListener{
+            startActivity(Intent(this, MainActivity::class.java))
+        }
         botonCerrarSesion.setOnClickListener{
             mGoogleSignInClient.signOut().addOnCompleteListener(this, OnCompleteListener<Void?> {
                     startActivity(Intent(this, Login::class.java))
